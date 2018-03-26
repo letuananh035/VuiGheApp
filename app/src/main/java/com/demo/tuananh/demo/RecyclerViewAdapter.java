@@ -2,8 +2,10 @@ package com.demo.tuananh.demo;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private boolean isLoading;
     private OnLoadMoreListener onLoadMoreListener;
     private int visibleThreshold = 5;
+
     public RecyclerViewAdapter(RecyclerView mContext, List<Film> mData, Activity activity) {
         this.activity = activity;
         this.mData = mData;
@@ -45,10 +48,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 totalItemCount = linearLayoutManager.getItemCount();
                 lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
                 if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                    isLoading = true;
                     if (onLoadMoreListener != null) {
                         onLoadMoreListener.onLoadMore();
                     }
-                    isLoading = true;
                 }
             }
         });
@@ -82,43 +85,82 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         //LayoutInflater mInflater = LayoutInflater.from(mContext);
         //view = mInflater.inflate(R.layout.cardview_item,parent,false);
 
-       // return new MyViewHolder(view);
+        // return new MyViewHolder(view);
     }
 
-    private Bitmap getBitmap(String url){
+    private Bitmap getBitmap(String url) {
         RequestTask http = new RequestTask();
         try {
             byte[] data = http.execute(url).get();
-            Bitmap bmp= BitmapFactory.decodeByteArray(data,0,data.length);
+            Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
             return bmp;
         } catch (Exception e) {
             return null;
         }
     }
 
+    void UpdateLayerNewFilm(MyViewHolder item,final Film mData){
+
+        item.film_title.setText(mData.film_name);
+        if (mData.thumbnail != null) {
+            Glide.with(activity)
+                    .load(mData.thumbnail)
+                    .into(item.thumbnail);
+        } else if (mData.thumbnail_small != null) {
+            Glide.with(activity)
+                    .load(mData.thumbnail_small)
+                    .into(item.thumbnail);
+        }
+        if (mData.name != null) {
+            item.episode.setText(mData.name);
+        }
+        //Set action
+        item.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(activity, ViewFilm.class);
+                //Film data = mData;
+                //intent.putExtra("Film", data);
+                //activity.startActivityForResult(intent, 1);
+            }
+        });
+    }
+
+    void UpdateLayerDayFilm(MyViewHolder item,final Film mData){
+        item.film_title.setText(mData.name);
+        if (mData.thumbnail != null) {
+            Glide.with(activity)
+                    .load(mData.thumbnail)
+                    .into(item.thumbnail);
+        } else if (mData.thumbnail_small != null) {
+            Glide.with(activity)
+                    .load(mData.thumbnail_small)
+                    .into(item.thumbnail);
+        }
+        item.episode.setVisibility(View.INVISIBLE);
+        //Set action
+        item.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, ViewFilm.class);
+                Film data = mData;
+                intent.putExtra("Film", data);
+                activity.startActivityForResult(intent, 1);
+            }
+        });
+    }
+
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof MyViewHolder) {
-            MyViewHolder item = (MyViewHolder)holder;
-            item.film_title.setText(mData.get(position).film_name);
-            if(mData.get(position).thumbnail_medium != null &&  item.thumbnail.getDrawable() == null){
-               // item.thumbnail.setImageBitmap(getBitmap(mData.get(position).thumbnail_medium));
-                Glide.with(activity)
-                        .load(mData.get(position).thumbnail_medium)
-                        .into(item.thumbnail);
+            MyViewHolder item = (MyViewHolder) holder;
+            Film film = mData.get(position);
+            if(film.TypeFilm.equals("NewFilm")){
+                UpdateLayerNewFilm(item,film);
+            }else if(film.TypeFilm.equals("DayFilm")){
+                UpdateLayerDayFilm(item,film);
             }
 
-            if(mData.get(position).name != null){
-                item.episode.setText(mData.get(position).name);
-            }
-            //Set action
-            item.cardView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
         } else if (holder instanceof LoadingViewHolder) {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);
@@ -139,17 +181,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView film_title;
         ImageView thumbnail;
         CardView cardView;
         TextView episode;
+
         public MyViewHolder(View itemView) {
             super(itemView);
-            film_title = (TextView)itemView.findViewById(R.id.name_film);
-            thumbnail = (ImageView)itemView.findViewById(R.id.image_film);
-            cardView = (CardView)itemView.findViewById(R.id.cardView);
-            episode = (TextView)itemView.findViewById(R.id.episode);
+            film_title = (TextView) itemView.findViewById(R.id.name_film);
+            thumbnail = (ImageView) itemView.findViewById(R.id.image_film);
+            cardView = (CardView) itemView.findViewById(R.id.cardView);
+            episode = (TextView) itemView.findViewById(R.id.episode);
         }
     }
 }

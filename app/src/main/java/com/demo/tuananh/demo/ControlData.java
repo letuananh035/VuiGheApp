@@ -53,10 +53,21 @@ public class ControlData {
         String url = "episodes/latest?offset=" + offset.toString() + "&limit=" + limit.toString();
         url = this.urlAPI + url;
         List<Film> list = getFilm(url);
-//        for (Film item:list) {
-//            item.bmThumbnail = getBitmap(item.thumbnail_medium);
-//        }
+        for (Film item:list) {
+            item.TypeFilm = "NewFilm";
+        }
         return list;
+    }
+
+    public  List<Film> getDayFilm(Integer offset, Integer limit){
+        String url = "films?picked=true&offset=" + offset.toString() + "&limit=" + limit.toString();
+        url = this.urlAPI + url;
+        List<Film> list = getFilm(url);
+        for (Film item:list) {
+            item.TypeFilm = "DayFilm";
+        }
+        return list;
+
     }
 
 }
