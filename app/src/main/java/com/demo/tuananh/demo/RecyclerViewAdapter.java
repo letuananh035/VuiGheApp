@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 /**
@@ -99,7 +102,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             MyViewHolder item = (MyViewHolder)holder;
             item.film_title.setText(mData.get(position).film_name);
             if(mData.get(position).thumbnail_medium != null &&  item.thumbnail.getDrawable() == null){
-                item.thumbnail.setImageBitmap(getBitmap(mData.get(position).thumbnail_medium));
+               // item.thumbnail.setImageBitmap(getBitmap(mData.get(position).thumbnail_medium));
+                Glide.with(activity)
+                        .load(mData.get(position).thumbnail_medium)
+                        .into(item.thumbnail);
             }
 
             if(mData.get(position).name != null){

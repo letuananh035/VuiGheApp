@@ -32,7 +32,7 @@ public class ControlData {
 
     private List<Film> getFilm(String url) {
         String json = Request(url); //Request data json
-        //Parse list object json with gson
+        //Parse object json with gson
         //Type listType = new TypeToken<ArrayList<Film>>(){}.getType();
         Response list = new Gson().fromJson(json, Response.class);
         return list.data;

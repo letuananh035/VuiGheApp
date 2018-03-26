@@ -41,4 +41,5 @@ public class RequestTask extends AsyncTask<String, Void, byte[]> {
             return null;
         }
     }
+
 }

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerViewAdapter adapter;
     private List<Film> list;
     private Integer pageLoad = 0;
-    private static final int LIMIT = 12;
+    private static final int LIMIT = 8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         //list.add( new Film("XXX3","Thông tin","category",R.drawable.ic1));
         //list.add( new Film("XXX4","Thông tin","category",R.drawable.ic1));
         RecyclerView rcrView = (RecyclerView) findViewById(R.id.recycleView);
-        rcrView.setLayoutManager(new GridLayoutManager(this,3));
+        rcrView.setLayoutManager(new GridLayoutManager(this,2));
         //rcrView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecyclerViewAdapter(rcrView,list,this);
         rcrView.setAdapter(adapter);

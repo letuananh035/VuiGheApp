@@ -31,6 +31,5 @@ public class Film {
     public String likes;
     public String ova;
     public String follow;
-    public Bitmap bmThumbnail;
 }
 
