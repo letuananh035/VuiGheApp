@@ -28,7 +28,7 @@ public class Film implements Serializable {
     public boolean is_movie;
     public String description;
     public Meta meta;
-    //public String genres;
+    public Genres genres;
     public String likes;
     public String ova;
     public String follow;

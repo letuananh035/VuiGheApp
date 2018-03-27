@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -32,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
         list = controlData.getDayFilm(pageLoad * LIMIT, LIMIT);
         pageLoad++;
 
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("VuiGhe");
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
 
         RecyclerView rcrView = (RecyclerView) findViewById(R.id.recycleView);
         rcrView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -71,5 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 }
