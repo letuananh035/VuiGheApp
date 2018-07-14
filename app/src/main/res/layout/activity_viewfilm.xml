@@ -58,102 +58,118 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
                 <TextView
                     android:id="@+id/nameFilm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="@android:color/white"
                     android:fontFamily="sans-serif-light"
-                    android:text="Thất Đại Tội"/>
+                    android:text="Thất Đại Tội"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/viewShow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:paddingTop="5dp"
                     android:drawableLeft="@drawable/ic_face_black_24dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@android:color/white"
                     android:fontFamily="sans-serif-light"
-                    android:text="6,039,579"/>
+                    android:paddingTop="5dp"
+                    android:text="6,039,579"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/likes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:paddingTop="5dp"
                         android:drawableLeft="@drawable/ic_favorite_black_24dp"
                         android:drawablePadding="5dp"
-                        android:textColor="@android:color/white"
                         android:fontFamily="sans-serif-light"
-                        android:text="5,083"/>
+                        android:paddingTop="5dp"
+                        android:text="5,083"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp" />
+
                     <TextView
-                        android:layout_marginLeft="50dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:paddingTop="5dp"
+                        android:layout_marginLeft="50dp"
                         android:drawableLeft="@drawable/ic_add_circle_black_24dp"
                         android:drawablePadding="5dp"
-                        android:textColor="@android:color/white"
                         android:fontFamily="sans-serif-light"
-                        android:text="0"/>
+                        android:paddingTop="5dp"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/newEps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:paddingTop="5dp"
                     android:drawableLeft="@drawable/ic_fiber_new_black_24dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@android:color/white"
                     android:fontFamily="sans-serif-light"
-                    android:text="Tập mới nhất: 39" />
+                    android:paddingTop="5dp"
+                    android:text="Tập mới nhất: 39"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:paddingTop="5dp"
                     android:drawableLeft="@drawable/ic_format_list_bulleted_black_24dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@android:color/white"
                     android:fontFamily="sans-serif-light"
-                    android:text="Hành Động,  Phiêu Lưu,  Siêu Nhiên"/>
+                    android:paddingTop="5dp"
+                    android:text="Hành Động,  Phiêu Lưu,  Siêu Nhiên"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="15dp"
                     android:layout_marginTop="5dp"
-                    android:textColor="@android:color/white"
                     android:fontFamily="sans-serif-light"
-                    android:text="Thất hình đại tội, một nhóm chiến binh có tham vọng lật đổ vương quốc Britannia, được cho là đã bị tiêu diệt bởi các hiệp sĩ thánh chiến mặc dù vẫn còn 1 số người cho rằng họ vẫn còn sống. 10 năm sau, Các hiệp sĩ thánh chiến đã làm 1 cuộc đảo chính và khống chế đức vua, họ trở thành người cai trị độc tài mới của vương quốc. Elizabeth, con gái út của nhà vua lên đường tìm thất hình đại tội để nhờ họ tái chiếm lại vương quốc."/>
+                    android:text="Thất hình đại tội, một nhóm chiến binh có tham vọng lật đổ vương quốc Britannia, được cho là đã bị tiêu diệt bởi các hiệp sĩ thánh chiến mặc dù vẫn còn 1 số người cho rằng họ vẫn còn sống. 10 năm sau, Các hiệp sĩ thánh chiến đã làm 1 cuộc đảo chính và khống chế đức vua, họ trở thành người cai trị độc tài mới của vương quốc. Elizabeth, con gái út của nhà vua lên đường tìm thất hình đại tội để nhờ họ tái chiếm lại vương quốc."
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_anchor="@+id/app_bar"
+        app:layout_anchorGravity="right|center"
+        app:srcCompat="@android:drawable/ic_media_play" />
 
 
 </android.support.design.widget.CoordinatorLayout>

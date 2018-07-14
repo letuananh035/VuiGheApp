@@ -2,6 +2,7 @@ package com.demo.tuananh.demo;
 
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +11,11 @@ import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 public class ViewFilm extends AppCompatActivity {
 
@@ -27,7 +31,7 @@ public class ViewFilm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewfilm);
         Intent intent = getIntent();
-        Film film = (Film) intent.getSerializableExtra("Film");
+        final Film film = (Film) intent.getSerializableExtra("Film");
 
 
         imgThumbnail = (ImageView) findViewById(R.id.imgThumbnail);
@@ -92,6 +96,19 @@ public class ViewFilm extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<Film> list = ControlData.getListEpisodes(film.id);
+                Episodes file = ControlData.getEpisodes(film.id,list.get(0).id,film.pathReferer());
+                Intent intent = new Intent(ViewFilm.this, ExoMedia.class);
+                intent.putExtra("Episodes", file);
+                ViewFilm.this.startActivityForResult(intent, 1);
+            }
+        });
+
     }
 
 }

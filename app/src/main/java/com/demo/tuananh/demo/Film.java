@@ -33,5 +33,9 @@ public class Film implements Serializable {
     public String ova;
     public String follow;
     public String TypeFilm;
+
+    public String pathReferer(){
+        return ControlData.urlBase + '/' + slug;
+    }
 }
 

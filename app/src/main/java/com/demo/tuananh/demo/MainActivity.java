@@ -16,7 +16,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 123;
-    private ControlData controlData;
     private String url = "http://vuighe.net/api/v2/films/5853/episodes/128911";
     private RecyclerViewAdapter adapter;
     private List<Film> list;
@@ -29,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        controlData = new ControlData();
-        list = controlData.getDayFilm(pageLoad * LIMIT, LIMIT);
+        list = ControlData.getDayFilm(pageLoad * LIMIT, LIMIT);
         pageLoad++;
 
 
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                             list.remove(list.size() - 1);
                             adapter.notifyItemRemoved(list.size());
                             //Generating more data
-                            List<Film> listTemp = controlData.getDayFilm(pageLoad * LIMIT, LIMIT);
+                            List<Film> listTemp = ControlData.getDayFilm(pageLoad * LIMIT, LIMIT);
                             if(listTemp == null || listTemp.size() == 0){
                                 isLoad = false;
                             }
